@@ -98,6 +98,11 @@ export class Service{
         }
     }
 
+    async getFileView(fileId) {
+            return this.bucket.getFileView(conf.appwriteBucketId, fileId);
+    }
+
+
     //file upload service
 
     async uploadFile(file){

@@ -9,10 +9,15 @@ function AllPosts() {
         .then((posts)=>{
             if(posts){
                 setPosts(posts.documents)
+                console.log(posts.documents)
             }
+        })
+        .catch((error)=>{
+          console.log("Error in fetiching posts",posts)
         })
         
     },[])
+    
   return (
     <div className='w-full py-8'>
       <Container>
@@ -26,7 +31,7 @@ function AllPosts() {
         </div>
       </Container>
     </div>
-  )
+  ) 
 }
 
 export default AllPosts
