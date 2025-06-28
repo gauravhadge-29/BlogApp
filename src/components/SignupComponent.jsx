@@ -6,7 +6,7 @@ import { Button, Input, Logo } from './index'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 
-function Signup() {
+export default function SignupComponent() {
     const navigate = useNavigate();
     const [error, setError] = useState("");
     const dispatch = useDispatch()
@@ -26,7 +26,7 @@ function Signup() {
         }
     }
     return (
-        <div className='flex items-center jsutify-center'>
+        <div className='flex flex-col items-center jsutify-center'>
             <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border-black-10`}>
                 <span className="inline-block w-full max-w-[100px]">
                     <Logo width="100%" />
@@ -83,4 +83,4 @@ function Signup() {
     )
 }
 
-export default Signup
+

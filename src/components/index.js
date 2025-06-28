@@ -3,7 +3,7 @@ import Footer from "./Footer/Footer";
 import Container from "./container/Container";
 import LogoutButton from "./Header/LogoutButton";
 import Logo from "./Logo";
-import Signup from "../pages/Signup";
+import SignupComponent from "../components/SignupComponent";
 import Login from '../components/Login'
 import AuthLayout from "../components/AuthLayout"
 import Postcard from "../components/Postcard"
@@ -20,7 +20,7 @@ export {
     LogoutButton,
     Logo,
     RTE,
-    Signup,
+    SignupComponent,
     Login,
     Input,
     Postcard,

@@ -16,7 +16,7 @@ function PostForm({post}) {
     })
 
     const navigate = useNavigate()
-    const userData = useSelector(state => state.user.userData)
+    const userData = useSelector(state => state.userData.userData)
 
     const submit = async(data)=>{
         if(post){
@@ -37,6 +37,14 @@ function PostForm({post}) {
         else{
             const file = await service.uploadFile(data.image[0])
 
+            if (!file) {
+            console.log("File upload failed.");
+            
+            }else{
+                console.log("File upload successful")
+                console.log("User Data :: " , userData.$id)
+            }
+
             if (file) {
                 const fileId = file.$id
                 data.featuredImage = fileId
@@ -49,23 +57,21 @@ function PostForm({post}) {
             }
 
         }
+    }
 
-        const slugTransform = useCallback((value)=>{
+    const slugTransform = useCallback((value)=>{
             if (value && typeof value === 'string') {
-                // const slug = value.toLowerCase().replace(/ /g,'-')
-                // setValue('slug',slug)
-                // return slug
+                const slug = value.toLowerCase().replace(/ /g,'-')
+                setValue('slug',slug)
+                return slug
 
-                return value
-                .trim()
-                .toLowerCase()
-                .replace(/^[a-zA-z\d\s]+/g,'-')
-                .replace(/\s/g, '-')
+                // return value
+                // .trim()
+                // .toLowerCase()
             }
 
             return ''
         },[])
-    }
 
 
     useEffect(()=>{
@@ -85,9 +91,53 @@ function PostForm({post}) {
     },[watch,slugTransform,setValue])
  
   return (
-    <div>
-      
-    </div>
+    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+            <div className="w-2/3 px-2">
+                <Input
+                    label="Title :"
+                    placeholder="Title"
+                    className="mb-4"
+                    {...register("title", { required: true })}
+                />
+                <Input
+                    label="Slug :"
+                    placeholder="Slug"
+                    className="mb-4"
+                    {...register("slug", { required: true })}
+                    onInput={(e) => {
+                        setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
+                    }}
+                />
+                <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
+            </div>
+            <div className="w-1/3 px-2">
+                <Input
+                    label="Featured Image :"
+                    type="file"
+                    className="mb-4"
+                    accept="image/png, image/jpg, image/jpeg, image/gif"
+                    {...register("image", { required: !post })}
+                />
+                {post && (
+                    <div className="w-full mb-4">
+                        <img
+                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            alt={post.title}
+                            className="rounded-lg"
+                        />
+                    </div>
+                )}
+                <Select
+                    options={["active", "inactive"]}
+                    label="Status"
+                    className="mb-4"
+                    {...register("status", { required: true })}
+                />
+                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                    {post ? "Update" : "Submit"}
+                </Button>
+            </div>
+        </form>
   )
 }
 

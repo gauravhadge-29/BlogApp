@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import Home from './pages/Home.jsx'
-import Login from './components/Login.jsx'
+import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
 import AllPosts from "./pages/AllPosts.jsx"
 import AddPost from './pages/addPost.jsx'
@@ -27,35 +27,28 @@ const router = createBrowserRouter([
         {
             path: "/login",
             element: (
-                <AuthLayout authentication={false}>
-                    <Login />
-                </AuthLayout>
+                <Login/>
             ),
         },
         {
             path: "/signup",
-            element: (
-                <AuthLayout authentication={false}>
-                    <Signup />
-                </AuthLayout>
-            ),
+            element: <Signup />
         },
         {
             path: "/all-posts",
             element: (
-                <AuthLayout authentication>
-                    {" "}
+                
+                   
                     <AllPosts />
-                </AuthLayout>
+                
             ),
         },
         {
             path: "/add-post",
             element: (
-                <AuthLayout authentication>
-                    {" "}
+                
                     <AddPost />
-                </AuthLayout>
+                
             ),
         },
         {
