@@ -16,7 +16,10 @@ function PostForm({post}) {
     })
 
     const navigate = useNavigate()
-    const userData = useSelector(state => state.userData.userData)
+    const userData = useSelector(state => state.userData)
+    if (!userData) {
+        return <div>Please log in to create or edit posts.</div>;
+    }
 
     const submit = async(data)=>{
         if(post){
@@ -42,7 +45,7 @@ function PostForm({post}) {
             
             }else{
                 console.log("File upload successful")
-                console.log("User Data :: " , userData.$id)
+                if(userData) console.log("User Data :: " , userData.$id)
             }
 
             if (file) {
