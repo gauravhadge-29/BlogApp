@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Logo({width = '100px'}) {
+function Logo({width = '100px', className = ''}) {
   return (
-    <div>
-      Logo
+    <div className={className} style={{width}}>
+      Blogger
     </div>
   )
 }

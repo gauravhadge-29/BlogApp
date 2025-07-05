@@ -39,6 +39,7 @@ export class Service{
 
     async updatePost(slug, {title, content, featuredImage,status}){
         try {
+            console.log("Updating data , new data :: ",{title, content, featuredImage,status})
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
@@ -121,7 +122,7 @@ export class Service{
 
     async deleteFile(fileID){
         try {
-            return await this.bucket.deleteFile(
+            await this.bucket.deleteFile(
                 conf.appwriteBucketId,
                 fileID,
 
