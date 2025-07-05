@@ -19,11 +19,13 @@ function Login() {
         setError("")
         try {
             const session = await authService.login(data)
+            console.log("Session:", session)
             if (session) {
                 const userData = await authService.getCurrentUser()
+                console.log("User Data:", userData)
+                navigate("/");
                 if (userData) {
                     dispatch(authLogin(userData))
-                    
                 }
                 
             }
