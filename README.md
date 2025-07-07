@@ -62,4 +62,6 @@ A modern, full-stack blog platform built with React and Vite, leveraging Appwrit
 - Edit or delete your own posts from the post detail page.
 - Browse all posts or view individual post details.
 
+## Consider Contirbuting if u want 
+
 
